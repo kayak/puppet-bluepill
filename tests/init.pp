@@ -1,7 +1,7 @@
 class { 'bluepill':
-   apps => {
-     'app1' => {
-       content => "
+  apps => {
+    'app1' => {
+      content => "
 Bluepill.application('app1') do |app|
   app.process('main') do |process|
     process.start_command = '/bin/sleep 5',
@@ -9,7 +9,7 @@ Bluepill.application('app1') do |app|
   end
 end
 ",
-     }
-   }
+    }
+  }
 }
 

@@ -36,10 +36,12 @@ define bluepill::app(
     }
   }
 
+  $rotate_opts = merge($bluepill::logrotate_defaults,
+                        $logrotate_options)
+
   if $rotate_logs {
     create_resources('logrotate::rule',
-                     { "bluepill-${appname}" => merge($bluepill::logrotate_defaults,
-                                                      $logrotate_options) },
-                     { 'path' => $logfile })
+                      { "bluepill-${appname}" => $rotate_opts },
+                      { 'path' => $logfile })
   }
 }

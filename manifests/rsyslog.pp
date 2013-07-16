@@ -12,6 +12,7 @@ class bluepill::rsyslog(
   }
 
   create_resources('logrotate::rule',
-                   { 'bluepill' => merge($bluepill::logrotate_defaults,$logrotate_options)},
-                   { 'path' => $log_path })
+                    { 'bluepill' => merge($bluepill::logrotate_defaults,
+                                          $logrotate_options)},
+                    { 'path' => $log_path })
 }
