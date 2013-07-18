@@ -63,7 +63,7 @@ class bluepill(
     include bluepill::rsyslog
   }
 
-  file { '/var/run/bluepill':
+  file { ['/var/run/bluepill',$confdir]:
     ensure => directory,
     owner  => 'root',
     group  => 'root',
