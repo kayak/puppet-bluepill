@@ -5,7 +5,7 @@ class bluepill::rsyslog(
 
   file { '/etc/rsyslog.d/45-bluepill.conf':
     ensure  => present,
-    content => template('bluepill/45-bluepill.conf.erb'),
+    content => template('bluepill/bluepill-rsyslog.conf.erb'),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

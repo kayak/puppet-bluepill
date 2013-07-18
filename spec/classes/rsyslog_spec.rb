@@ -23,7 +23,7 @@ PUPPET
   end
 
   it do
-    should contain_file('/etc/rsyslog.d/95-bluepill.conf').with({
+    should contain_file('/etc/rsyslog.d/45-bluepill.conf').with({
       :content => /local6\.\*\s+\/tmp\/bluepill.log/,
       :mode => '0644',
       :owner => 'root',

@@ -1,39 +1,29 @@
 # == Class: bluepill
 #
-# Full description of class bluepill here.
+# Install bluepill gem and configuration and process directories on
+# the node.
 #
 # === Parameters
 #
-# Document parameters here.
+# [*confdir*]
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# Directory where pill files should be stored.
 #
-# === Variables
+# [*apps*]
 #
-# Here you should define a list of variables that this module would require.
+# Hash definitions of bluepill::app resources that should be instaleld
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
+# [*app_defaults*]
 #
-# === Examples
+# Defaults for the app resources
 #
-#  class { bluepill:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
-#  }
+# [*use_rsyslog*]
 #
-# === Authors
+# Configure rsyslog to log Bluepill messages to /var/log/bluepill
 #
-# Author Name <author@domain.com>
+# [*logrotate_defaults*]
 #
-# === Copyright
-#
-# Copyright 2013 Kayak
+# Default parameters for /var/log/bluepill log rotation.
 #
 class bluepill(
   $confdir            = '/etc/bluepill',
