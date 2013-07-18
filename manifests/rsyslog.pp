@@ -3,9 +3,9 @@ class bluepill::rsyslog(
   $logrotate_options = {},
 ){
 
-  file { '/etc/rsyslog.d/95-bluepill.conf':
+  file { '/etc/rsyslog.d/45-bluepill.conf':
     ensure  => present,
-    content => template('bluepill/95-bluepill.conf.erb'),
+    content => template('bluepill/45-bluepill.conf.erb'),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
