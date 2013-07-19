@@ -4,6 +4,6 @@
 
 <% raise "@appname cannot be nil!" if @appname.nil? -%>
 
-bluepill <%= @appname %> status %>/dev/null || ( bluepill load <%= @conffile %>; sleep 1 )
+bluepill <%= @appname %> status &>/dev/null || ( bluepill load <%= @conffile %>; sleep 1 )
 
 bluepill <%= @appname %> "$@"
