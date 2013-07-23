@@ -39,6 +39,7 @@ class bluepill(
     'compress'      => true,
     'postrotate'    => 'reload rsyslog >/dev/null 2>&1 || true',
   },
+  $rubygems_class     = 'r9util::rubygems',
 ){
 
   $supported = {
@@ -61,4 +62,12 @@ class bluepill(
   }
 
   create_resources('bluepill::app',$apps,$app_defaults)
+
+  if $rubygems_class != 'UNDEFINED' {
+    include $rubygems_class
+
+    Bluepill::App <||> {
+      require => Class[$rubygems_class]
+    }
+  }
 }
