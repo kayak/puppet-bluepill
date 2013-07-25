@@ -15,4 +15,14 @@ class bluepill::rsyslog(
                     { 'bluepill' => merge($bluepill::logrotate_defaults,
                                           $logrotate_options)},
                     { 'path' => $log_path })
+
+  Logrotate::Rule <||> {
+    notify => Exec['restart-rsyslog'],
+  }
+
+  exec { 'restart-rsyslog':
+    path        => ['/bin','/usr/bin','/sbin','/usr/sbin'],
+    command     => 'service rsyslog restart',
+    refreshonly => true,
+  }
 }

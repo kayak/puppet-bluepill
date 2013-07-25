@@ -35,5 +35,11 @@ PUPPET
       :path => '/tmp/bluepill.log',
       :ifempty => false,
     })
-  end              
+
+    should contain_exec('restart-rsyslog').with({
+      :path        => ['/bin','/usr/bin','/sbin','/usr/sbin'],
+      :command     => 'service rsyslog restart',
+      :refreshonly => true,
+    })
+  end
 end
