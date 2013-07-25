@@ -4,6 +4,58 @@
 
 <% raise "@appname cannot be nil!" if @appname.nil? -%>
 
-bluepill <%= @appname %> status &>/dev/null || ( bluepill load <%= @conffile %>; sleep 1 )
+reload(){
+  bluepill load <%= @conffile %>
+  sleep 1
+}
 
-bluepill <%= @appname %> "$@"
+is_running(){
+  bluepill_call status 2>/dev/null | grep "<%= @appname %>.*: up" >&/dev/null
+}
+
+bluepill_call(){
+  bluepill "<%= @appname %>" "$@"
+}
+
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root!"
+  exit 1
+fi
+
+case $1 in
+     start)
+         if is_running; then
+           echo "<%= @appname %> is already running"
+	   exit 1
+         else
+           reload
+           bluepill_call start
+         fi
+     ;;
+     stop)
+         if is_running; then
+           bluepill_call stop
+         else
+           echo "<%= @appname %> is not running"
+	   exit 1
+         fi
+     ;;
+     status)
+         if is_running; then
+           echo "<%= @appname %> is running"
+           bluepill_call status
+           exit 0
+         else
+           echo "<%= @appname %> is not running"
+           exit 1
+         fi
+     ;;
+     restart)
+         reload
+         bluepill_call restart
+     ;;
+     *)
+         echo "Usage: $0 {stop|start|restart|status}"
+         exit 1
+     ;;
+esac

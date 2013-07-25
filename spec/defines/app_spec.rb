@@ -46,7 +46,7 @@ PUPPET
         :owner => 'root',
         :group => 'root',
         :mode  => '0755',
-        :content => /bluepill app1 "\$\@"/,
+        :content => /bluepill_call\(\)\{\s*bluepill "app1" "\$\@"/,
       })
       should contain_logrotate__rule('bluepill-app1').with({
         :path => '/q/thelog',
