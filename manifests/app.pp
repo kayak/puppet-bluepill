@@ -32,7 +32,7 @@ define bluepill::app(
     service { $service_name:
       ensure    => running,
       enable    => true,
-      require   => File[$conffile],
+      subscribe => File[$conffile],
     }
   }
 
