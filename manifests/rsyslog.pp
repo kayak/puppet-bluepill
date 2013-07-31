@@ -1,3 +1,5 @@
+# Set up rsyslog to record bluepill messages in /var/log/bluepill,
+# and a logrotate rule to rotate bluepill logs
 class bluepill::rsyslog(
   $log_path = '/var/log/bluepill',
   $logrotate_options = {},

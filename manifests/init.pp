@@ -11,7 +11,7 @@
 #
 # [*apps*]
 #
-# Hash definitions of bluepill::app resources that should be instaleld
+# Hash definitions of bluepill::app resources that should be created.
 #
 # [*app_defaults*]
 #
@@ -23,7 +23,11 @@
 #
 # [*logrotate_defaults*]
 #
-# Default parameters for /var/log/bluepill log rotation.
+# Default parameters for app and bluepill log rotation.
+#
+# [*rubygems_class*]
+#
+# Class to require before installing the bluepill gem.
 #
 class bluepill(
   $confdir            = '/etc/bluepill',
@@ -63,10 +67,14 @@ class bluepill(
 
   create_resources('bluepill::app',$apps,$app_defaults)
 
+  Bluepill::App <||> {
+    require => Package['bluepill']
+  }
+
   if $rubygems_class != 'UNDEFINED' {
     include $rubygems_class
 
-    Bluepill::App <||> {
+    Package['bluepill'] {
       require => Class[$rubygems_class]
     }
   }

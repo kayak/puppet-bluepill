@@ -1,3 +1,6 @@
+# A helpful abstraction for setting up bluepill apps. Supply a config file,
+# and this type can create an init script for the app, ensure the app is
+# is running using Bluepill's service type, and rotate the app's logs.
 define bluepill::app(
   $source = undef,
   $content = undef,
