@@ -26,7 +26,7 @@ PUPPET
       :service_name => 'f',
       :logfile => '/tmp/log',
       :rotate_logs => 'h',
-      :logrotate_options => { 'rotate' => 2 },
+      :logrotate_options => { 'rotate' => '2' },
     }
   end
   it 'should render config file' do
@@ -49,7 +49,7 @@ CONTENT
       :service_name      => 'f',
       :logfile           => '/tmp/log',
       :rotate_logs       => 'h',
-      :logrotate_options => { 'rotate' => 2 },
+      :logrotate_options => { 'rotate' => '2' },
     })
   end
 
