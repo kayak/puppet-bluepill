@@ -37,6 +37,7 @@ describe 'bluepill' do
           }
         },
         :app_defaults => {
+          'content' => 'foo',
           'create_service' => true,
           'rotate_logs' => false,
         }
@@ -46,11 +47,13 @@ describe 'bluepill' do
     it do
       should contain_bluepill__app('app1').with({
         :service_name => 'bluepill-app1',
+        :content => 'foo',
         :rotate_logs => true,
         :create_service => true,
       })
       should contain_bluepill__app('app2').with({
         :service_name => 'foo',
+        :content => 'foo',
         :rotate_logs => false,
         :create_service => true,
       })

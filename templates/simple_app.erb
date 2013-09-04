@@ -1,0 +1,11 @@
+
+Bluepill.application(<%= @appname.inspect %>) do |app|
+  app.uid = <%= @user.inspect %>
+  app.gid = <%= @group.inspect %>
+  app.process(<%= @appname.inspect %>) do |process|
+    process.start_command = <%= @start_command.inspect %>
+    process.daemonize = true
+    process.pid_file = <%= @pidfile.inspect %>
+    process.stdout = process.stderr = <%= @logfile.inspect %>
+  end
+end

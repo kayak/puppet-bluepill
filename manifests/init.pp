@@ -1,7 +1,7 @@
 # == Class: bluepill
 #
-# Install bluepill gem and configuration and process directories on
-# the node.
+# Install bluepill gem, create and configuration and pidfile
+# directories.
 #
 # === Parameters
 #
@@ -23,11 +23,13 @@
 #
 # [*logrotate_defaults*]
 #
-# Default parameters for app and bluepill log rotation.
+# Default parameters to the logrotate::rule type (for app and bluepill
+# log rotation.
 #
 # [*rubygems_class*]
 #
-# Class to require before installing the bluepill gem.
+# Class to require before installing the bluepill gem. Set to 'UNDEFINED'
+# to not require any class.
 #
 class bluepill(
   $confdir            = '/etc/bluepill',

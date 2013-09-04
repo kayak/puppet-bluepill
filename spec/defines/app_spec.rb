@@ -59,7 +59,8 @@ PUPPET
   context 'create_service is false' do
     let(:title) do 'app1' end
     let(:params) do
-      { 
+      {
+        :content => 'foo',
         :create_service => false,
         :service_name => 'a'
       }
@@ -73,7 +74,7 @@ PUPPET
 
   context 'rotate_logs is false' do
     let(:title) do 'app1' end
-    let(:params) do {:rotate_logs => false } end
+    let(:params) do { :content => 'foo', :rotate_logs => false } end
     it { should_not contain_logrotate__rule('bluepill-app1') }
   end
 end

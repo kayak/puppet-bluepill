@@ -1,18 +1,54 @@
-# A helpful abstraction for setting up bluepill apps. Supply a config file,
-# and this type can create an init script for the app, ensure the app is
-# is running using Bluepill's service type, and rotate the app's logs.
+# == Define: bluepill::app
+#
+# An abstraction for configuring Bluepill apps. Supply a source
+# path or template for a Bluepill config file, and (in addition to
+# copying the config file into /etc/bluepill) this type can:
+#
+#   - create an init script for the app
+#   - ensure the app is running (using Puppet's service type)
+#   - rotate the app's logs
+#
+# === Parameters
+#
+# [*title*] A unique name for this app.
+#
+# [*source*]
+#   Puppet URL pointing to source of the app's Bluepill
+#   config file, as in Puppet's file type.
+#
+# [*content*]
+#   String representing content of the app's Bluepill config
+#   file, as in Puppet's file type. Must be supplied if $source is not.
+#
+# [*create_service*]
+#   When true, an init script will be created for this bluepill app,
+#   and it will be declared as a Puppet service.
+#
+# [*rotate_logs*]
+#   Whether to rotate the logs for this app.
+#
+# [*logfile*]
+#   Path to the app's logfile. Only matters if $rotate_logs is true.
+#
+# [*logrotate_options*]
+#   Set any desired logrotate options here.
+#
 define bluepill::app(
-  $source = undef,
-  $content = undef,
-  $create_service = true,
-  $service_name = "bluepill-${title}",
-  $rotate_logs = true,
-  $logfile = "/var/log/${title}",
+  $source            = undef,
+  $content           = undef,
+  $create_service    = true,
+  $service_name      = "bluepill-${title}",
+  $logfile           = "/var/log/${title}",
+  $rotate_logs       = false,
   $logrotate_options = {},
 ){
 
   $appname = $title
   $conffile = "${bluepill::confdir}/${appname}.pill"
+
+  if $source == undef and $content == undef {
+    fail('Either source or content parameter must be supplied!')
+  }
 
   file { $conffile:
     ensure  => file,
