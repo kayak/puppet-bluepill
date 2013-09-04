@@ -18,7 +18,7 @@ If you don't use rsyslog, you can disable rsyslog rule generation like this:
        use_rsyslog => false,
     }
 
-If you do not want this module to install rubygems at all, you can disable as follows:
+If you do not want this module to install rubygems, you can disable with:
 
     class { 'bluepill':
       rubygems_class => 'UNDEFINED',
