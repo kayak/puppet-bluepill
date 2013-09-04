@@ -33,8 +33,6 @@
 #
 class bluepill(
   $confdir            = '/etc/bluepill',
-  $apps               = {},
-  $app_defaults       = {},
   $use_rsyslog        = true,
   $logrotate_defaults = {
     'rotate'        => 4,
@@ -66,8 +64,6 @@ class bluepill(
     group  => 'root',
     mode   => '0755',
   }
-
-  create_resources('bluepill::app',$apps,$app_defaults)
 
   Bluepill::App <||> {
     require => Package['bluepill']

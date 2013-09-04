@@ -43,6 +43,8 @@ define bluepill::app(
   $logrotate_options = {},
 ){
 
+  include bluepill
+
   $appname = $title
   $conffile = "${bluepill::confdir}/${appname}.pill"
 
