@@ -4,7 +4,7 @@ define bluepill::simple_app(
   $group          = 'root',
   $pidfile        = "/var/run/bluepill-${title}.pid",
   $create_service = true,
-  $service_name   = "blupill-${title}",
+  $service_name   = "bluepill-${title}",
   $logfile        = "/var/log/${title}",
   $rotate_logs    = false,
   $logrotate_options = {},

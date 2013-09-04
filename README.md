@@ -14,11 +14,11 @@ The following will install rubygems and the bluepill gem, create the /var/run/bl
 
 If you don't use rsyslog, you can disable rsyslog rule generation like this:
 
-    class { 'bluepill::simple_app':
+    class { 'bluepill':
        use_rsyslog => false,
     }
 
-If you do not want this module to install rubygems at all, you can disable as follows:
+If you do not want this module to install rubygems, you can disable with:
 
     class { 'bluepill':
       rubygems_class => 'UNDEFINED',
