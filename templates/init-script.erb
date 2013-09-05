@@ -7,6 +7,7 @@
 #   https://github.com/kayakco/puppet-bluepill
 
 <% raise "@appname cannot be nil!" if @appname.nil? -%>
+PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 reload(){
   bluepill load <%= @conffile %>
