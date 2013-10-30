@@ -37,6 +37,7 @@ class bluepill(
   $logrotate_defaults = {
     'rotate'        => 4,
     'rotate_every'  => 'day',
+    'copytruncate'  => true,
     'ifempty'       => false,
     'missingok'     => true,
     'delaycompress' => true,
