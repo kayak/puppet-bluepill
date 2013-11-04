@@ -53,66 +53,36 @@ CONTENT
     })
   end
 
-  # context 'all parameters are overridden' do
-  #   let(:title) do 'app1' end
-  #   let(:params) do
-  #     {
-  #       :source  => 'baz',
-  #       :content => 'foobar',
-  #       :create_service => true,
-  #       :service_name => 'maservice',
-  #       :rotate_logs => true,
-  #       :logfile => '/q/thelog',
-  #       :logrotate_options => {
-  #         'compress' => false,
-  #       },
-  #     }
-  #   end
+  context 'set config_content' do
+    let (:title) do 'app1' end
+    let (:params) do
+      {
+        :start_command => 'foo',
+        :config_content => 'SOMECONTENT'
+      }
+    end
 
-  #   it do
-  #     should contain_file('/b/app1.pill').with({
-  #       :owner => 'root',
-  #       :group => 'root',
-  #       :mode  => '0644',
-  #       :source => 'baz',
-  #       :content => 'foobar',
-  #     })
-  #     should contain_service('maservice').with({
-  #       :ensure => 'running',
-  #       :enable => true,
-  #     })
-  #     should contain_file('/etc/init.d/maservice').with({
-  #       :owner => 'root',
-  #       :group => 'root',
-  #       :mode  => '0755',
-  #       :content => /bluepill_call\(\)\{\s*bluepill "app1" "\$\@"/,
-  #     })
-  #     should contain_logrotate__rule('bluepill-app1').with({
-  #       :path => '/q/thelog',
-  #       :compress => false,
-  #       :missingok => false,
-  #     })
-  #   end
-  # end
+    it {
+      should contain_bluepill__app('app1').with({
+        :content => 'SOMECONTENT',
+      })
+    }
+  end
 
-  # context 'create_service is false' do
-  #   let(:title) do 'app1' end
-  #   let(:params) do
-  #     { 
-  #       :create_service => false,
-  #       :service_name => 'a'
-  #     }
-  #   end
+  context 'set config_source' do
+    let (:title) do 'app1' end
+    let (:params) do
+      {
+        :start_command => 'foo',
+        :config_source => 'puppet:///modules/FOO'
+      }
+    end
 
-  #   it do
-  #      should_not contain_service('a')
-  #      should_not contain_file('/etc/init.d/a')
-  #   end
-  # end
+    it {
+      should contain_bluepill__app('app1').with({
+        :source => 'puppet:///modules/FOO',
+      })
+    }
+  end
 
-  # context 'rotate_logs is false' do
-  #   let(:title) do 'app1' end
-  #   let(:params) do {:rotate_logs => false } end
-  #   it { should_not contain_logrotate__rule('bluepill-app1') }
-  # end
 end
