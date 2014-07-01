@@ -51,8 +51,14 @@ class bluepill(
     'CentOS' => ['6'],
     'Ubuntu' => ['12'],
   }
+
   ensure_supported($supported,true)
 
+  package { 'activesupport':
+    ensure   => '3.2.18',
+    provider => 'gem',
+  }
+  ->
   package { 'bluepill': provider => 'gem' }
 
   if $use_rsyslog {

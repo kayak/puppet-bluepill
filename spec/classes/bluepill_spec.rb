@@ -11,6 +11,7 @@ describe 'bluepill' do
   context 'default parameters' do
     it do
       should contain_bluepill__rsyslog
+      should contain_package('activesupport').with({ :provider => 'gem' })
       should contain_package('bluepill').with({ :provider => 'gem' })
       should contain_file('/var/run/bluepill')
       should include_class('r9util::rubygems')
