@@ -54,12 +54,20 @@ class bluepill(
 
   ensure_supported($supported,true)
 
+  package { 'i18n':
+    ensure   => '0.6.11',
+    provider => 'gem',
+  }
+  ->
   package { 'activesupport':
     ensure   => '3.2.18',
     provider => 'gem',
   }
   ->
-  package { 'bluepill': provider => 'gem' }
+  package { 'bluepill':
+    ensure   => '0.0.67',
+    provider => 'gem'
+  }
 
   if $use_rsyslog {
     include bluepill::rsyslog
