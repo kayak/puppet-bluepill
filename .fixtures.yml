@@ -2,6 +2,6 @@ fixtures:
   symlinks:
     bluepill: "#{source_dir}"
   repositories:
-    logrotate: "git://github.com/rodjek/puppet-logrotate"
+    logrotate: "git://github.com/yo61/puppet-logrotate"
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib"
     r9util: "git://github.com/kayakco/puppet-r9util"
