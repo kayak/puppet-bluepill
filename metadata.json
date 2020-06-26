@@ -1,0 +1,30 @@
+{
+  "name": "kayak-bluepill",
+  "version": "0.0.4",
+  "author": "Kayak",
+  "summary": "Puppet module for managing Bluepill.",
+  "license": "Apache-2.0",
+  "source": "ssh://git@git.runwaynine.com:7999/op/github-bluepill.git",
+  "project_page": "https://git.runwaynine.com/projects/OP/repos/github-bluepill/browse",
+  "dependencies": [
+    { "name":"puppetlabs/stdlib","version_requirement":">= 3.2.0" },
+    { "name":"puppet/logrotate","version_requirement":">= 2.0.0" },
+    { "name":"kayak/r9util","version_requirement":">= 0.0.3" }
+  ],
+  "data_provider": "hiera",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 5.0.0 < 6.0.0"
+    }
+  ],
+  "description": "Puppet module for managing Bluepill."
+}
